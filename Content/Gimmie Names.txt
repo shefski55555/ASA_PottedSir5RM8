@@ -1,0 +1,68 @@
+import os
+import time
+dir = os.path.dirname(__file__)
+engramTitle = ''
+primalTitle = ''
+titleFolder = ''
+lastEngramFolder = ''
+lastPrimalFolder = ''
+engrams = []
+unformattedEngrams = []
+primalItems =[]
+
+
+def fileFound(file, folder):
+    global engramTitle, primalTitle, lastEngramFolder, lastPrimalFolder
+    if file.endswith(".uasset"):
+        if("EngramEntry" in os.path.splitext(file)[0] or "PrimalItem" in os.path.splitext(file)[0]):
+            if folder != lastEngramFolder:
+                engramTitle = f"\n//{folder}\n"
+            else:
+                engramTitle = ''
+
+            if folder != lastPrimalFolder:
+                primalTitle = f"\n//{folder}\n"
+            else:
+                primalTitle = ''
+
+            filename = os.path.splitext(file)[0]
+
+            if("EngramEntry" in os.path.splitext(file)[0]):
+                engrams.append(engramTitle+filename + "_C" + "\n")
+                unformattedEngrams.append(filename + "_C" + "\n")
+                lastEngramFolder = folder
+            elif("PrimalItem" in os.path.splitext(file)[0]):
+                primalItems.append(primalTitle+filename + "_C" + "\n")
+                lastPrimalFolder = folder
+
+def recursiveFindFiles(directoryToSearch):
+    global titleFolder
+    for entry in os.listdir(directoryToSearch):
+        full_path = os.path.join(directoryToSearch, entry)
+        if os.path.isdir(full_path):
+            if entry in os.listdir(dir) : titleFolder = entry
+            recursiveFindFiles(full_path)
+        else:
+            fileFound(entry, titleFolder)
+
+recursiveFindFiles(dir)                        
+with open(os.path.join(dir,"Names.txt"),"w") as nameFile:
+        nameFile.write("[Engram Entries]")
+        nameFile.writelines(engrams)
+        print("Wrote All Engram Entries")
+        nameFile.write("\n")
+        nameFile.write("[Primal Items]")
+        nameFile.writelines(primalItems)
+        print("Wrote All Primal Items")
+        nameFile.write("\n")
+        with open(os.path.join(dir,"Extras Text.txt"),"r") as extrasFile:
+            nameFile.write(extrasFile.read())
+            print("Added Extra Text")
+
+with open(os.path.join(dir,"Hide All Engrams.txt"),"w") as hiddenEngramsFile:
+    for engramEntry in unformattedEngrams:
+        hiddenEngramsFile.write('OverrideNamedEngramEntries=(EngramClassName="'+engramEntry.strip()+'",EngramHidden=True,EngramPointsCost=0,EngramLevelRequirement=1,RemoveEngramPreReq=False)\n')
+    print("Wrote Hidden file, number of engrams: "+ str(len(unformattedEngrams)))
+                
+print("done")
+input()

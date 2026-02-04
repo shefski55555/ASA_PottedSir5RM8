@@ -1,0 +1,2 @@
+OverrideNamedEngramEntries=(EngramClassName="EngramEntry_StatueToNormal_C",EngramHidden=True,EngramPointsCost=0,EngramLevelRequirement=1,RemoveEngramPreReq=False)
+OverrideNamedEngramEntries=(EngramClassName="EngramEntry_Steampunk_SirStatue_C",EngramHidden=True,EngramPointsCost=0,EngramLevelRequirement=1,RemoveEngramPreReq=False)

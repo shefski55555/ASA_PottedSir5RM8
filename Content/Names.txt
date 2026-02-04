@@ -1,0 +1,33 @@
+[Engram Entries]
+//Converter
+EngramEntry_StatueToNormal_C
+EngramEntry_Steampunk_SirStatue_C
+
+[Primal Items]
+//Chibi
+PrimalItemSkin_ChibiDino_PottedSir5RM8_C
+PrimalItemSkin_ChibiDino_PottedSir5RM8_Butler_C
+PrimalItemSkin_ChibiDino_PottedSir5RM8_Companion_C
+PrimalItemSkin_ChibiDino_PottedSir5RM8_Harvest_C
+PrimalItemSkin_ChibiDino_PottedSir5RM8_Party_C
+PrimalItemSkin_ChibiDino_PottedSir5RM8_Repair_C
+PrimalItem_ChibiDino_RandomCraftable_Potted_C
+
+//Converter
+PrimalItemResource_StatueToNormal_C
+
+//Old
+PrimalItemResource_MetalSir-5RM8Ingot_C
+PrimalItemResource_ScrapPotted_C
+PrimalItemResource_ScrapSir-5RM8Metal_C
+PrimalItem_Spawner_SirStatue_C
+
+[Examples]
+//Make Fungal Wood unlock at level 55 and cost 50 engram points
+OverrideNamedEngramEntries=(EngramClassName="EngramEntry_MEE_FungalWood_C",EngramHidden=False,EngramPointsCost=50,EngramLevelRequirement=55,RemoveEngramPreReq=False)
+
+//Make Fungal Wood craftable with 10 Stone and 10 Thatch
+ConfigOverrideItemCraftingCosts=(ItemClassString="PrimalItemResource_MEE_FungalWood_C",BaseCraftingResourceRequirements=((ResourceItemTypeString="PrimalItemResource_Stone_C",BaseResourceRequirement=10.0,bCraftingRequireExactResourceType=False),(ResourceItemTypeString="PrimalItemResource_Thatch_C",BaseResourceRequirement=10.0,bCraftingRequireExactResourceType=False)))
+
+//Hiding an engram
+OverrideNamedEngramEntries=(EngramClassName="EngramEntry_MEE_FungalWood_C",EngramHidden=True,EngramPointsCost=0,EngramLevelRequirement=1,RemoveEngramPreReq=False)
