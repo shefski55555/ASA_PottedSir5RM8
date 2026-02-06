@@ -1,0 +1,9 @@
+[Examples]
+//Make Fungal Wood unlock at level 55 and cost 50 engram points
+OverrideNamedEngramEntries=(EngramClassName="EngramEntry_MEE_FungalWood_C",EngramHidden=False,EngramPointsCost=50,EngramLevelRequirement=55,RemoveEngramPreReq=False)
+
+//Make Fungal Wood craftable with 10 Stone and 10 Thatch
+ConfigOverrideItemCraftingCosts=(ItemClassString="PrimalItemResource_MEE_FungalWood_C",BaseCraftingResourceRequirements=((ResourceItemTypeString="PrimalItemResource_Stone_C",BaseResourceRequirement=10.0,bCraftingRequireExactResourceType=False),(ResourceItemTypeString="PrimalItemResource_Thatch_C",BaseResourceRequirement=10.0,bCraftingRequireExactResourceType=False)))
+
+//Hiding an engram
+OverrideNamedEngramEntries=(EngramClassName="EngramEntry_MEE_FungalWood_C",EngramHidden=True,EngramPointsCost=0,EngramLevelRequirement=1,RemoveEngramPreReq=False)
